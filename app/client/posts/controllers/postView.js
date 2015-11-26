@@ -141,21 +141,31 @@ function compileDirective($compile) {
   };
 }
 
+var commentDirTemplate = '<span>'
+ + ' <span ng-click="toggle=!toggle" ng-transclude class="comment_selection"></span>'
+ + ' <div ng-if="toggle" class="comment_section">'
+ + '   <md-card class="comment"><md-card-content>'
+ + '  <img class="comment-thumb" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg"/>'
+ + '   <span>{{comment.author}} - {{comment.message}}</span>'
+ + '  </md-card-content></md-card>'
+ + '</div>'
+ + '</span>';
+
 function commentDirective($compile){
       return {
         restrict: 'ACE',
         link: function(scope, elem, attrs)
         {
-                console.log("GSDGSD");
-                if (typeof($scope.category) != 'undefined')
-                {
-
-                }
-
+            scope.comment = {};
+            scope.comment.message = "This is a comment text that is very very long";
+            scope.comment.author = "Richard";
+            scope.toggle = false;
         },
         scope: { 
-          comment_id:'@',
+          commentid:'@',
          },
-        template: '<div>fdsfjasflfsa</div>'
+        template: commentDirTemplate,
+        transclude: true
+
     }
   };
