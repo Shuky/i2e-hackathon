@@ -27,6 +27,12 @@ angular.module('scpc').config(['$stateProvider', '$urlRouterProvider', '$locatio
       .state('home', {
         parent: 'root',
         url: '/'
+      })
+      .state('test', {
+        parent: 'root',
+        url: '/test',
+        controller: 'TestCtrl',
+        templateUrl: 'app/client/main/test/views/test.ng.html'
       });
 
     $urlRouterProvider.otherwise("/posts/list");

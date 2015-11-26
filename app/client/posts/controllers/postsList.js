@@ -1,4 +1,5 @@
-angular.module("scpc").controller("PostsListCtrl", ['$scope', '$meteor', '$state', 
+angular.module("scpc")
+.controller("PostsListCtrl", ['$scope', '$meteor', '$state', 
   function($scope, $meteor){
      $scope.sort = {createdAt: -1};
 
