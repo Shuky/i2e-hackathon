@@ -28,3 +28,4 @@ Meteor.publish("posts", function (options, searchString) {
     },
     options);
 });
+// Tomere testing
