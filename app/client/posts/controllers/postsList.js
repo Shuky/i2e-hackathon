@@ -10,7 +10,7 @@ angular.module("scpc").controller("PostsListCtrl", ['$scope', '$meteor', '$state
 
     $scope.posts = $meteor.collection(function() {
       return Posts.find({}, {
-        sort : $scope.getReactively('sort')
+        //sort : $scope.getReactively('sort')
       });
     });
 
@@ -19,15 +19,21 @@ angular.module("scpc").controller("PostsListCtrl", ['$scope', '$meteor', '$state
     // }
 
     $scope.add = function(post){
-      //$meteor.call('add', post);
+      $meteor.call('add', post);
     };
 
     $scope.remove = function(post){
        $meteor.call('remove', post);
     };
 
-    $scope.update = function(post) {
+    $scope.update = function (post) {
       $meteor.call('update', post); 
     };
+
+    $scope.like = function(post) {
+      console.log(post);
+      $meteor.call('like', post); 
+    };
+
 
   }]);

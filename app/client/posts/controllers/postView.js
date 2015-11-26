@@ -1,5 +1,23 @@
-angular.module("scpc").controller("PostViewCtrl", ['$scope', '$meteor',
-  function($scope, $meteor){
+angular.module("scpc").directive('compile', compileDirective).controller("PostViewCtrl", ['$scope', '$meteor', '$state',
+  function($scope, $meteor, $state){
+
+
+    $meteor.autorun($scope, function() {
+        $meteor.subscribe('posts', {}, $scope.getReactively('search')).then(function(){
+          console.log('Got posts');
+        });
+    });
+    console.log("Finding post:" + $state.params.id);
+    $scope.cur_post = $meteor.call('get_post', $state.params.id).then(function (posts) {
+        $scope.cur_post = posts[0];
+        console.log($scope.cur_post);
+    });
+
+    
+    $scope.getPostContent = function () {
+        // body...
+    }
+
     //  $scope.sort = {createdAt: -1};
 
     // $meteor.autorun($scope, function() {
@@ -54,5 +72,34 @@ angular.module("scpc").controller("PostViewCtrl", ['$scope', '$meteor',
 
     }
 
+    $scope.like = function(post) {
+      $meteor.call('like', post); 
+    };
+
 
   }]);
+
+
+function compileDirective($compile) {
+
+  return {
+    restrict: 'A',
+    link: function(scope, elem, attrs) {
+      //Watch for changes to expression
+      scope.$watch(attrs.compile, function(newVal) {
+
+        //Compile creates a linking function
+        // that can be used with any scope
+        var link = $compile(newVal);
+
+        //Executing the linking function
+        // creates a new element
+        var newElem = link(scope);
+
+        //Which we can then append to our DOM element
+        elem.append(newElem);
+      });
+    }
+  };
+
+}
