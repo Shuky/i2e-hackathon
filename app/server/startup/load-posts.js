@@ -4,9 +4,9 @@ Meteor.startup(function () {
     var posts = [
       {
         'title' :' Case 36-2015',
-        'message': "<h2>" + 
+        'message': "<iecomment>" + 
 "        Case 36-2015: A 27-Year-Old Woman with a Lesion of the Ear Canal" + 
-"      </h2>            " + 
+"      </iecomment>     <iecomment> </iecomment>       " + 
 "      <h6>Konstantina M. Stankovic, M.D., Ph.D., Oon T. Tan, M.D., Ph.D., and Peter M. Sadow, M.D., Ph.D.</h6>" + 
 "              <h3 class=\"cpc-section\">Presentation of Case</h3>" + 
 "               <p>Dr. Konstantina M. Stankovic: A 27-year-old woman was seen in an outpatient otolaryn-gology clinic of the Massachusetts Eye and Ear Infirmary, which is affiliated with this hospital, because of a pruritic lesion of the left ear canal, with recurrent bleeding." + 
@@ -344,7 +344,8 @@ Meteor.startup(function () {
         public: true,
         owner: '1',
         likes: 0,
-        id : '1'
+        id : '1',
+        labels: ['']
       },
       {
         'title' :' Case 36-2015',

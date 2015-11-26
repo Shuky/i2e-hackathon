@@ -1,6 +1,10 @@
 Posts = new Mongo.Collection("posts");
 
 Meteor.methods({
+  get_comments: function (id) {
+    return Comments.find({ postid : id }).fetch();
+
+  },
   get_post: function (id2) {
     return Posts.find({ id : id2}).fetch();
   },
