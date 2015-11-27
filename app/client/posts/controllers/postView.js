@@ -1,6 +1,25 @@
 angular.module("scpc")
 .directive('iecomment', commentDirective)
 .directive('compile', compileDirective)
+.controller('AppCtrl', function($scope, $mdDialog, $mdMedia) {
+  $scope.status = '  ';
+  $scope.customFullscreen = $mdMedia('sm');
+  $scope.showAlert = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    // Modal dialogs should fully cover application
+    // to prevent interaction outside of dialog
+    $mdDialog.show(
+      $mdDialog.alert()
+        .parent(angular.element(document.querySelector('#popupContainer')))
+        .clickOutsideToClose(true)
+        .title('The article is now in your Notebook!')
+        // .textContent('You can specify some description text in here.')
+        .ariaLabel('Added to notebook')
+        .ok('Got it!')
+        .targetEvent(ev)
+    );
+  };
+})
 .controller("PostViewCtrl", ['$scope', '$meteor', '$state',
   function($scope, $meteor, $state){
 
@@ -14,6 +33,12 @@ angular.module("scpc")
     $scope.cur_post = $meteor.call('get_post', $state.params.id).then(function (posts) {
         $scope.cur_post = posts[0];
         console.log($scope.cur_post);
+    });
+
+    $scope.comments = $meteor.call('get_comments', $state.params.id).then(function (comm) {
+        $scope.comments = comm;
+        console.log("I have comments!!");
+        console.log($scope.comments);
     });
 
     
@@ -82,7 +107,7 @@ angular.module("scpc")
     $scope.replaceSelectionText = function () {
         var text = "";
         var sel, range;
-
+        return;
         if (!$scope.cur_post)  // check if the promise is already finished
             return text;
 
@@ -146,7 +171,7 @@ var commentDirTemplate = '<span>'
  + ' <div ng-if="toggle" class="comment_section">'
  + '   <md-card class="comment"><md-card-content>'
  + '  <img class="comment-thumb" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg"/>'
- + '   <span>{{comment.author}} - {{comment.message}}</span>'
+ + '   <span>{{comment.author}}: {{comment.message}}</span>'
  + '  </md-card-content></md-card>'
  + '</div>'
  + '</span>';
@@ -157,7 +182,7 @@ function commentDirective($compile){
         link: function(scope, elem, attrs)
         {
             scope.comment = {};
-            scope.comment.message = "This is a comment text that is very very long";
+            scope.comment.message = "This is a comment, imagine this comment is a long conversation between two awsome students...";
             scope.comment.author = "Richard";
             scope.toggle = false;
         },
@@ -169,3 +194,15 @@ function commentDirective($compile){
 
     }
   };
+
+  function DialogController($scope, $mdDialog) {
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}

@@ -9,11 +9,18 @@
     </md-content>
     </div> -->
     <script type="text/javascript">
-
+    function likee(){
+      if (document.getElementById("likes").innerText =="18"){
+        document.getElementById("likes").innerText = 19;
+        document.getElementById("ico_type").innerText = "favorite";}
+      else{
+        document.getElementById("likes").innerText = 18;
+        document.getElementById("ico_type").innerText = "favorite_border";}
+    }
 
 
     </script>
-    
+
     <span flex></span>
     <div layout="column" flex="50">
       <md-content class="md-padding">
@@ -24,15 +31,17 @@
                Go Back
              </md-button>
                <h2>
-                 <!-- <span>Toolbar with Icon Buttons</span> -->
+                {{cur_post.title}}
                </h2>
                <span flex></span>
                <md-button class="md-icon-button" aria-label="Favorite">
-                 <md-icon md-font-set="material-icons" style="color: white;" ng-click="like(cur_post)"> favorite </md-icon>
-                 <span class="md-subhead">{{cur_post.likes}}</span>
+                 <md-icon id="ico_type" md-font-set="material-icons" style="color: white;" onclick="likee()"> favorite_border </md-icon>
+                 <span id="likes" class="md-subhead">18</span>
                </md-button>
                <md-button class="md-icon-button" aria-label="Turned In">
-                <md-icon md-font-set="material-icons" style="color: white;"> turned_in </md-icon>
+               <div ng-controller="AppCtrl">
+         <md-icon md-font-set="material-icons" style="color: white;" ng-click="showAlert($event)"> turned_in </md-icon>
+              </div>
                </md-button>
              </div>
          </md-toolbar>   	
