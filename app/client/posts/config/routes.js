@@ -6,12 +6,20 @@ angular.module('scpc').config(['$stateProvider',
         parent: 'root',
         abstract: true,
         url: '/posts',
-        template: '<ui-view/>'
+        template: '<div ui-view/><div ui-view="posts"/>'
       })
       .state('posts.list', {
         url: '/list',
-        templateUrl: 'app/client/posts/views/posts-list.ng.html',
-        controller: 'PostsListCtrl'
+        views: {
+          '': {
+            templateUrl: 'app/client/posts/views/tags-list.ng.html',
+            controller: 'TagsListCtrl'
+          },
+          'posts': {
+            templateUrl: 'app/client/posts/views/posts-list.ng.html',
+            controller: 'PostsListCtrl'
+          }
+        }
       })
       .state('posts.view', {
         url: '/view/:id',

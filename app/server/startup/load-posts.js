@@ -3,6 +3,8 @@ Meteor.startup(function () {
   if (Posts.find().count() === 0) {
     var posts = [
       {
+      	'likes': 18,
+      	'imageUrl': 'https://upload.wikimedia.org/wikipedia/commons/e/ee/MRI-Philips.JPG',
         'title' :' Case 36-2015',
         'message': "<iecomment commentid='1'>" + 
 "        Case 36-2015: A 27-Year-Old Woman with a Lesion of the Ear Canal" + 
@@ -343,12 +345,12 @@ Meteor.startup(function () {
         'createdAt' : new Date(),
         public: true,
         owner: '1',
-        likes: 0,
         id : '1',
         labels: ['']
       },
       {
         'title' :' Quantom Physics',
+        'imageUrl': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Schrodingers_cat.svg/2000px-Schrodingers_cat.svg.png',
         'message': "<p>Scientific inquiry into the wave nature of light began in the 17th and 18th centuries, when scientists such as Robert Hooke, Christiaan Huygens and Leonhard Euler proposed a wave theory of light based on experimental observations.[1] In 1803, Thomas Young, an English polymath, performed the famous double-slit experiment that he later described in a paper entitled On the nature of light and colours. This experiment played a major role in the general acceptance of the wave theory of light." + 
 "In 1838, Michael Faraday discovered cathode rays. These studies were followed by the 1859 statement of the black-body radiation problem by Gustav Kirchhoff, the 1877 suggestion by Ludwig Boltzmann that the energy states of a physical system can be discrete, and the 1900 quantum hypothesis of Max Planck.[2] Planck\'s hypothesis that energy is radiated and absorbed in discrete \"quanta\" (or energy elements) precisely matched the observed patterns of black-body radiation." + 
 "In 1896, Wilhelm Wien empirically determined a distribution law of black-body radiation,[3] known as Wien\'s law in his honor. Ludwig Boltzmann independently arrived at this result by considerations of Maxwell\'s equations. However, it was valid only at high frequencies and underestimated the radiance at low frequencies. Later, Planck corrected this model using Boltzmann\'s statistical interpretation of thermodynamics and proposed what is now called Planck\'s law, which led to the development of quantum mechanics." + 
@@ -379,10 +381,11 @@ Meteor.startup(function () {
         'createdAt' : new Date(),
         public: true,
         owner: '1',
-        likes: 0,
+        likes: 11,
         id : '2'
       },
       {
+      	'imageUrl': 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Hydrogen_Density_Plots.png/286px-Hydrogen_Density_Plots.png',
         'title' : 'Wiki-Physics',
         'message': "<div id=\"mw-content-text\" lang=\"en\" dir=\"ltr\" class=\"mw-content-ltr\"><div class=\"hatnote\">For a more accessible and less technical introduction to this topic, see <a href=\"/wiki/Introduction_to_quantum_mechanics\" title=\"Introduction to quantum mechanics\">Introduction to quantum mechanics</a>.</div>" + 
  "<div class=\"thumb tright\">" + 
@@ -1688,9 +1691,20 @@ Meteor.startup(function () {
         'createdAt' : new Date(),
         public: true,
         owner: '1',
-        likes: 0,
+        likes: 6,
         id : '3'
-      }
+      },
+  	  {
+  	  	title: 'Math',
+  	  	imageUrl: 'http://resultncutoff.in/wp-content/uploads/2015/03/maths-ftr.jpg',
+  	  	message: 'Nothing To See Here... MOVE ALONG!',
+        public: true,
+        owner: '1',
+        likes: 15,
+        id : '4',
+        'createdAt' : new Date(),
+  	  }    
+
     ];
     for (var i = 0; i < posts.length; i++)
       Posts.insert(posts[i]);

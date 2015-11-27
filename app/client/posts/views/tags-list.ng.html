@@ -1,0 +1,32 @@
+<div layout="row" ng-cloak class="tagsAutoComplete topSpace">
+<span flex></span>
+  <md-content class="md-padding autocomplete" layout="column" flex="65">
+    <md-contact-chips
+        ng-model="tags"
+        md-contacts="querySearch($query)"
+        md-contact-name="name"
+        md-contact-image="image"
+        md-require-match="true"
+        md-highlight-flags="i"
+        filter-selected="filterSelected"
+        placeholder="To">
+    </md-contact-chips>
+    <md-list class="fixedRows">
+      <md-subheader class="md-no-sticky">Tags</md-subheader>
+      <md-list-item class="md-2-line contact-item" ng-repeat="(index, tag) in alltags"
+          ng-if="tags.indexOf(tag) < 0">
+        <img ng-src="{{tag.image}}" class="md-avatar" alt="{{tag.name}}" />
+        <div class="md-list-item-text compact">
+          <h3>{{tag.name}}</h3>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-2-line contact-item selected" ng-repeat="(index, tag) in tags">
+        <img ng-src="{{tag.image}}" class="md-avatar" alt="{{tag.name}}" />
+        <div class="md-list-item-text compact">
+          <h3>{{tag.name}}</h3>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
+  <span flex></span>
+</div>
