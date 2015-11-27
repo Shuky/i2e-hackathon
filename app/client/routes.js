@@ -26,7 +26,7 @@ angular.module('scpc').config(['$stateProvider', '$urlRouterProvider', '$locatio
       })
       .state('home', {
         parent: 'root',
-        url: '/'
+        url: '/posts/list'
       })
       .state('test', {
         parent: 'root',

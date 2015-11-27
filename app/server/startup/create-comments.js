@@ -8,7 +8,6 @@ Meteor.startup(function () {
         'createdAt' : new Date(),
         postid: '1',
         commentid: 0,
-
       },
       {
         'title' :'I think you are wrong!',

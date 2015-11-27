@@ -1,5 +1,4 @@
-angular.module("scpc")
-.controller("PostsListCtrl", ['$scope', '$meteor', '$state', 
+angular.module("scpc").controller("PostsListCtrl", ['$scope', '$meteor', '$state', 
   function($scope, $meteor){
      $scope.sort = {createdAt: -1};
 
@@ -32,7 +31,7 @@ angular.module("scpc")
     };
 
     $scope.like = function(post) {
-      console.log(post);
+      // console.log(post);
       $meteor.call('like', post); 
     };
 
